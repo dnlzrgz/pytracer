@@ -1,6 +1,6 @@
 import pygame
 import math
-from settings import PLAYER_ANGLE, PLAYER_POS, PLAYER_SPEED, PLAYER_ROT_SPEE, WIDTH
+from settings import PLAYER_ANGLE, PLAYER_POS, PLAYER_SPEED, PLAYER_ROT_SPEE
 
 
 class Player:
@@ -52,17 +52,18 @@ class Player:
             self.y += dy
 
     def draw(self):
-        pygame.draw.line(
-            self.game.screen,
-            "yellow",
-            (self.x * 100, self.y * 100),
-            (
-                self.x * 100 + WIDTH * math.cos(self.angle),
-                self.y * 100 + WIDTH * math.sin(self.angle),
-            ),
-            2,
-        )
-
+        # player direction
+        # pygame.draw.line(
+        #      self.game.screen,
+        #      "yellow",
+        #      (self.x * 100, self.y * 100),
+        #      (
+        #          self.x * 100 + WIDTH * math.cos(self.angle),
+        #          self.y * 100 + WIDTH * math.sin(self.angle),
+        #      ),
+        #      2,
+        #  )
+        #
         pygame.draw.circle(
             self.game.screen,
             "green",
