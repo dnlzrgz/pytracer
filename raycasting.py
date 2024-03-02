@@ -64,10 +64,14 @@ class RayCasting:
             else:
                 depth = depth_hor
 
+            # projection
             projection_height = SCREEN_DIST / (depth + 0.0001)
+
+            # draw
+            color = [255 / (1 + depth**5 * 0.00002)] * 3
             pygame.draw.rect(
                 self.game.screen,
-                "white",
+                color,
                 (
                     ray * SCALE,
                     HALF_HEIGHT - projection_height // 2,
