@@ -10,20 +10,24 @@ class Game:
     def __init__(self) -> None:
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        self.clock = pygame.time.Clock()
-        self.delta_time = 1
+        self.clock = pygame.time.Clock()  # to control frame rate
+        self.delta_time = 1  # last time since the last frame
         self.new()
 
     def new(self):
+        # Create necessary objects
         self.map = Map(self)
         self.player = Player(self)
         self.raycasting = RayCasting(self)
 
     def update(self):
+        # Updates game state
         self.player.update()
         self.raycasting.update()
+
         pygame.display.flip()
         self.delta_time = self.clock.tick(FPS)
+
         pygame.display.set_caption(f"{self.clock.get_fps() : .1f}")
 
     def draw(self):
@@ -49,5 +53,6 @@ class Game:
 
 
 if __name__ == "__main__":
+    # Run the game
     game = Game()
     game.run()

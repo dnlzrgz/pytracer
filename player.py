@@ -11,6 +11,7 @@ class Player:
         self.angle = PLAYER_ANGLE
 
     def move(self):
+        # Calculate the movement based on the player's angle
         sin_a = math.sin(self.angle)
         cos_a = math.cos(self.angle)
         dx, dy = 0, 0
@@ -20,24 +21,24 @@ class Player:
         speed_cos = speed * cos_a
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_w]:
+        if keys[pygame.K_w]:  # Forwards
             dx += speed_cos
             dy += speed_sin
-        if keys[pygame.K_s]:
+        if keys[pygame.K_s]:  # Backwards
             dx += -speed_cos
             dy += -speed_sin
-        if keys[pygame.K_a]:
+        if keys[pygame.K_a]:  # Tankish left
             dx += speed_sin
             dy += -speed_cos
-        if keys[pygame.K_d]:
+        if keys[pygame.K_d]:  # Tankish right
             dx += -speed_sin
             dy += speed_cos
 
         self.check_collision(dx, dy)
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT]:  # Rotate left
             self.angle -= PLAYER_ROT_SPEE * self.game.delta_time
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT]:  # Rotate right
             self.angle += PLAYER_ROT_SPEE * self.game.delta_time
 
         self.angle %= math.tau
@@ -52,18 +53,6 @@ class Player:
             self.y += dy
 
     def draw(self):
-        # player direction
-        # pygame.draw.line(
-        #      self.game.screen,
-        #      "yellow",
-        #      (self.x * 100, self.y * 100),
-        #      (
-        #          self.x * 100 + WIDTH * math.cos(self.angle),
-        #          self.y * 100 + WIDTH * math.sin(self.angle),
-        #      ),
-        #      2,
-        #  )
-        #
         pygame.draw.circle(
             self.game.screen,
             "green",
@@ -76,8 +65,10 @@ class Player:
 
     @property
     def pos(self):
+        # Current position of the player
         return self.x, self.y
 
     @property
     def map_pos(self):
+        # Current position of the player in the map
         return int(self.x), int(self.y)
