@@ -64,6 +64,9 @@ class RayCasting:
             else:
                 depth = depth_hor
 
+            # removes fish-eye effect
+            depth *= math.cos(self.game.player.angle - ray_angle)
+
             # projection
             projection_height = SCREEN_DIST / (depth + 0.0001)
 
